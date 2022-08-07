@@ -111,7 +111,8 @@ const Home = () => {
           </Modal.Title>
           <i className="bi bi-x-circle-fill pointer text-blue-600" onClick={handleClose} style={{fontSize: "25px"}}></i>
         </Modal.Header>
-        <Modal.Body>{todoView && todoView.content}</Modal.Body>
+        <Modal.Body><h6 className="mb-5 font-normal">{todoView && todoView.content}</h6>
+        <span className="block mt-auto font-light text-xs">{todoView && todoView.updatedAt.slice(0,10) + " · " + todoView.updatedAt.slice(11,19)}</span></Modal.Body>
       </Modal>
 
       <Modal
