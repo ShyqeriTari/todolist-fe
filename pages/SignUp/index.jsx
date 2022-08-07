@@ -10,7 +10,7 @@ const SignIn = () => {
     const router = useRouter();
 
     const userRegister = async (e) => {
-
+        e.preventDefault();
         const User = { username, password }
         try {
             let response = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/user/register`, {
@@ -42,7 +42,7 @@ const SignIn = () => {
     }
 
     return (
-        <div className="m-auto text-center border-container mt-5">
+        <div className="m-auto text-center border-container bg-white mt-5">
             <div className="flex flex-col">
                 <h3 className="mt-3 text-blue-600">Sign Up</h3>
                 <input type="text" placeholder="Insert username..." onChange={(e) => { setUsername(e.target.value) }} required className="w-70 m-auto mt-3 border-blue-600 border p-1" />
