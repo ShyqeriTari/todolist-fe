@@ -30,13 +30,13 @@ a {
 }
 
 .border-container{
-  border: 1px solid blue;
+  border: 1px solid rgb(18, 97, 255);
   border-radius: 15px;
   width: 40%;
 }
 
 .border-container2{
-  border: 1px solid blue;
+  border: 1px solid rgb(18, 97, 255);
   border-radius: 15px;
   width: 100px;
 }
@@ -47,4 +47,20 @@ a {
 
 .pointer{
   cursor: pointer;
+}
+
+.note-container{
+  border: 1px solid rgb(18, 97, 255);
+  border-radius: 15px;
+  width: 200px;
+  height: 200px;
+}
+
+.cut-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
