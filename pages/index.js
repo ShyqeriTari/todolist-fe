@@ -1,9 +1,9 @@
-import HomePage from './components/HomePage.jsx';
+import SignIn from './SignIn/index.jsx';
+import Link from 'next/link.js';
 
 const Index = () => (
   <div>
-    <p>Thank u, next</p>
-    <HomePage />
+<SignIn />
   </div>
 );
 
