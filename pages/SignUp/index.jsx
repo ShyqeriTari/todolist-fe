@@ -3,13 +3,27 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
+import validator from "validator";
 
 const SignIn = () => {
 
     const [username, setUsername] = useState(undefined)
     const [password, setPassword] = useState(undefined)
+    const [passwordMessage, setPasswordMessage] = useState(undefined)
 
     const router = useRouter();
+
+    const validate = (value) => {
+ 
+        if (validator.isStrongPassword(value, {
+          minLength: 8, minLowercase: 1,
+          minUppercase: 1, minNumbers: 1, minSymbols: 1
+        })) {
+          setPasswordMessage('Is Strong Password')
+        } else {
+          setPasswordMessage('Is Not Strong Password')
+        }
+      }
 
     const userRegister = async (e) => {
         e.preventDefault();
@@ -49,9 +63,15 @@ const SignIn = () => {
         <div className="m-auto text-center border-container bg-white mt-5">
             <div className="flex flex-col">
                 <h3 className="mt-3 text-blue-600">Sign Up</h3>
-                <input type="text" placeholder="Insert username..." onChange={(e) => { setUsername(e.target.value) }} required className="w-70 m-auto mt-3 border-blue-600 border p-1" />
-                <input type="password" placeholder="Insert password..." onChange={(e) => { setPassword(e.target.value) }} required className="w-70 m-auto mt-2 border-blue-600 border p-1" />
-                <button className="mt-3 mb-2 m-auto border-container bg-blue-600 text-white" onClick={(e) => { userRegister(e) }} >Submit</button>
+                <input type="text" placeholder="Insert username..." onChange={(e) => { setUsername(e.target.value) }} required className="w-70 m-auto mt-3 bg-white border-blue-600 border p-1" />
+                <input type="password" placeholder="Insert password..." onChange={(e) => { validate(e.target.value);  setPassword(e.target.value)  }} required className="w-70 m-auto bg-white mt-2 border-blue-600 border p-1" />
+                <label className="text-blue-600 font-light text-sm">Password minimum length is 8 characters and must contain: 
+                <ol><li>1 lowercase letter</li>
+                <li>1 uppercase letter</li>
+                <li>1 number</li>
+                <li>1 symbol</li>
+                </ol>  </label>
+                <button className="mt-2 mb-2 m-auto border-container bg-blue-600 text-white" onClick={(e) => { passwordMessage === 'Is Strong Password'? userRegister(e) : alert(passwordMessage) }} >Submit</button>
                 <span className="mb-3 text-blue-600"> <Link href="/" > Already registered?  Sign In here</Link></span>
             </div>
         </div>
