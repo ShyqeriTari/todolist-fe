@@ -67,7 +67,6 @@ const Home = () => {
         })
         if (response.ok) {
             let data = await response.json()
-            console.log(data)
          handleClose2()
           getTodos()
         } else {

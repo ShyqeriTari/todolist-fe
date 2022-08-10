@@ -26,7 +26,6 @@ const SignIn = () => {
       })
       if (response.ok) {
         let data = await response.json()
-        console.log(data)
         localStorage.setItem("token", data.accessToken)
         localStorage.setItem("userId", data.user)
         router.push("/Home")
