@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap-icons/font/bootstrap-icons.css"
 
 const SignIn = () => {
 
@@ -42,6 +44,8 @@ const SignIn = () => {
   }
 
   return (
+    <>
+    <h1 className="m-auto text-center text-blue-600 mt-3 mb-3 font-bold">Todolist-challenge</h1>
     <div className="m-auto text-center border-container bg-white mt-5">
       <div className="flex flex-col">
         <h3 className="mt-3 text-blue-600">Sign In</h3>
@@ -51,6 +55,7 @@ const SignIn = () => {
         <span className="mb-3 text-blue-600"> <Link href="/SignUp" > Not registered?  Sign Up here</Link></span>
       </div>
     </div>
+    </>
   );
 }
 
