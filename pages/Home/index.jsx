@@ -94,6 +94,7 @@ const deleteTodo = async () => {
     })
     if (response.status === 200) {
       handleClose3()
+      handleClose()
       getTodos()
     } else {
     alert("dletion failed")
@@ -123,6 +124,7 @@ const deleteTodo = async () => {
         })
         if (response.status === 204) {
          handleClose4()
+         handleClose()
           getTodos()
         } else {
             alert("Creating todo failed")
@@ -150,17 +152,17 @@ const deleteTodo = async () => {
     <h1 className="text-center font-bold text-blue-600 mb-5">TODOS</h1>
     <div className="grid gap-4 sm:grid-cols-2 m-auto md:grid-cols-4 lg:grid-cols-6">
       {todos && todos.map((todo, index) => { return(
-        <div key={index}  className="note-container pointer  p-2 m-auto flex flex-col justify-between">
-        <div onClick={()=> {handleShow(); setTodoView(todo)}}>
+        <div key={index} onClick={()=> {handleShow(); setTodoView(todo)}}  className="note-container pointer  p-2 m-auto flex flex-col justify-between">
+        <div >
           <h5 className="font-bold text-blue-600 mb-2">{todo.title}</h5>
           <div>
           <span className="text-sm cut-line">{todo.content}</span>
           </div> 
         </div>
-        <div className="flex justify-between items-center">
-        <span onClick={()=> {handleShow(); setTodoView(todo)}} className="mt-auto font-light text-xs">{todo.updatedAt.slice(0,10) + " · " + todo.updatedAt.slice(11,19)}</span>
+        <div className="flex justify-between items-center" style={{zIndex: "100"}}>
+        <span className="mt-auto font-light text-xs">{todo.updatedAt.slice(0,10) + " · " + todo.updatedAt.slice(11,19)}</span>
         <i className="bi bi-pencil pointer text-green-600" onClick={()=>{handleShow4(); setModifyId(todo.id); setTodoView(todo)}} style={{fontSize: "18px"}}></i>
-        <i className="bi bi-trash pointer text-red-600" onClick={()=>{handleShow3(); setDeleteId(todo.id)}} style={{fontSize: "18px"}}></i>
+        <i className="bi bi-trash pointer text-red-600" onClick={()=>{handleShow3(); setDeleteId(todo.id)}} style={{fontSize: "18px", zIndex: "100"}}></i>
         </div>
       </div>)
       })}
@@ -209,12 +211,12 @@ const deleteTodo = async () => {
           <Modal.Title id="example-modal-sizes-title-md" className="text-blue-600">
            Delete todo
           </Modal.Title>
-          <i className="bi bi-x-circle-fill pointer text-blue-600" onClick={handleClose3} style={{fontSize: "25px"}}></i>
+          <i className="bi bi-x-circle-fill pointer text-blue-600" onClick={()=>{handleClose3(); handleClose()}} style={{fontSize: "25px"}}></i>
         </Modal.Header>
         <Modal.Body><h6>Are you sure to delete todo?</h6>
         <div className="flex">
           <button className="mt-3 mb-2 m-auto border-container bg-green-600 text-white" onClick={(e) => { deleteTodo() }} >Yes</button> 
-        <button className="mt-3 mb-2 m-auto border-container bg-red-600 text-white" onClick={(e) => { handleClose3() }} >no</button>
+        <button className="mt-3 mb-2 m-auto border-container bg-red-600 text-white" onClick={(e) => { handleClose3(); handleClose() }} >no</button>
         </div>
         </Modal.Body>
       </Modal>
@@ -229,7 +231,7 @@ const deleteTodo = async () => {
           <Modal.Title id="example-modal-sizes-title-md" className="text-blue-600">
            Modify todo
           </Modal.Title>
-          <i className="bi bi-x-circle-fill pointer text-blue-600" onClick={handleClose4} style={{fontSize: "25px"}}></i>
+          <i className="bi bi-x-circle-fill pointer text-blue-600" onClick={()=> {handleClose4(); handleClose()}} style={{fontSize: "25px"}}></i>
         </Modal.Header>
         <Modal.Body><input type="text" defaultValue={todoView && todoView.title} onChange={(e) => { setTitle(e.target.value) }} required className="w-70 m-auto mt-3 mb-3 border-blue-600 border p-1" />
         <textarea required defaultValue={todoView && todoView.content} onChange={(e)=> {setContent(e.target.value)}} className="border p-1 border-blue-600" name="Text1" cols="40" rows="10"></textarea>
