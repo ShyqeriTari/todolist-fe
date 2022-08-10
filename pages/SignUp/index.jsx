@@ -21,7 +21,7 @@ const SignIn = () => {
         })) {
           setPasswordMessage('Is Strong Password')
         } else {
-          setPasswordMessage('Is Not Strong Password')
+          setPasswordMessage('Password is not strong enough')
         }
       }
 
