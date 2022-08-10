@@ -8,6 +8,8 @@ const SignIn = () => {
 
   const [username, setUsername] = useState(undefined)
   const [password, setPassword] = useState(undefined)
+  const [inputType, setInputType] = useState("password")
+  const [eyeView, setEyeView] = useState(false)
 
   const router = useRouter();
 
@@ -50,7 +52,10 @@ const SignIn = () => {
       <div className="flex flex-col">
         <h3 className="mt-3 text-blue-600">Sign In</h3>
         <input type="text" placeholder="Insert username..." onChange={(e) => { setUsername(e.target.value) }} required className="w-70 m-auto mt-3 bg-white border-blue-600 border p-1" />
-        <input type="password" placeholder="Insert password..." onChange={(e) => { setPassword(e.target.value) }} required className="w-70 m-auto bg-white mt-2 border-blue-600 border p-1" />
+        <div className="flex justify-center items-center ">
+        <input type={inputType} placeholder="Insert password..." onChange={(e) => { setPassword(e.target.value) }} required className="w-70 ml-4  bg-white mt-2 border-blue-600 border p-1" />
+       { eyeView === false ? <i className="bi bi-eye pointer text-blue-600 ml-1" onClick={()=> {setInputType("text"); setEyeView(!eyeView)}}></i> :  <i className="bi bi-eye-slash pointer text-blue-600 ml-1" onClick={()=> {setInputType("password"); setEyeView(!eyeView)}}></i>}
+        </div>
         <button className="mt-3 mb-2 m-auto border-container bg-blue-600 text-white" onClick={(e) => { userLogin(e) }} >Submit</button>
         <span className="mb-3 text-blue-600"> <Link href="/SignUp" > Not registered?  Sign Up here</Link></span>
       </div>

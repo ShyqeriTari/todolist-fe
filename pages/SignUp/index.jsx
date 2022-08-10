@@ -10,6 +10,8 @@ const SignIn = () => {
     const [username, setUsername] = useState(undefined)
     const [password, setPassword] = useState(undefined)
     const [passwordMessage, setPasswordMessage] = useState(undefined)
+    const [inputType, setInputType] = useState("password")
+    const [eyeView, setEyeView] = useState(false)
 
     const router = useRouter();
 
@@ -64,7 +66,10 @@ const SignIn = () => {
             <div className="flex flex-col">
                 <h3 className="mt-3 text-blue-600">Sign Up</h3>
                 <input type="text" placeholder="Insert username..." onChange={(e) => { setUsername(e.target.value) }} required className="w-70 m-auto mt-3 bg-white border-blue-600 border p-1" />
-                <input type="password" placeholder="Insert password..." onChange={(e) => { validate(e.target.value);  setPassword(e.target.value)  }} required className="w-70 m-auto bg-white mt-2 border-blue-600 border p-1" />
+                <div className="flex justify-center items-center ">
+        <input type={inputType} placeholder="Insert password..." onChange={(e) => { validate(e.target.value) ; setPassword(e.target.value) }} required className="w-70 ml-4  bg-white mt-2 border-blue-600 border p-1" />
+       { eyeView === false ? <i className="bi bi-eye pointer text-blue-600 ml-1" onClick={()=> {setInputType("text"); setEyeView(!eyeView)}}></i> :  <i className="bi bi-eye-slash pointer text-blue-600 ml-1" onClick={()=> {setInputType("password"); setEyeView(!eyeView)}}></i>}
+        </div>
                 <label className="text-blue-600 font-light text-sm">Password minimum length is 8 characters and must contain: 
                 <ol><li>1 lowercase letter</li>
                 <li>1 uppercase letter</li>
