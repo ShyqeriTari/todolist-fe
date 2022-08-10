@@ -32,12 +32,11 @@ const SignIn = () => {
         router.push("/Home")
         setRender(true)
       } else {
-        alert("login failed")
         if (response.status === 400) {
-          alert("bad request")
+          alert("Incorrect password or username")
         }
         if (response.status === 404) {
-          alert("page not found")
+          alert("User does not exist")
         }
       }
     } catch (error) {

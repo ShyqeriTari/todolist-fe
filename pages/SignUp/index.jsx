@@ -46,12 +46,8 @@ const SignIn = () => {
                 router.push("/Home")
                 setRender(true)
             } else {
-                alert("registration failed")
                 if (response.status === 400) {
-                    alert("bad request")
-                }
-                if (response.status === 404) {
-                    alert("page not found")
+                    alert("Username already exist, please choose another one")
                 }
             }
         } catch (error) {
